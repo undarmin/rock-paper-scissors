@@ -4,6 +4,9 @@ let funcDecl = 0; // how many times decideRound() has been declared
 
 const scores = [0 /* player score */ , 0 /* computer score */ ];
 
+const resultDisplay = document.querySelector('#result-display');
+const scoreDisplay = document.querySelector('#point-display');
+
 choices.forEach(
     (choice) => {
         choice.addEventListener('click', () => {
@@ -12,19 +15,31 @@ choices.forEach(
             scores[roundResult[1]]++;
             funcDecl++;
             console.log(roundResult, scores, funcDecl);
+            let resultText;
 
-            if (!(funcDecl % 5)) {
-                const resultText = "Game Over! " + 
-                    (scores[0] > scores[1]) 
-                    ? "You win!"
-                    : "You lose!";
+            if ((funcDecl % 5 == 0)) {
+                resultText = ((scores[0] > scores[1]) 
+                ? "You win!"
+                : (scores[0] < scores[1]) ? "You lose!" : "Tie!") +
+                " To play again, just select your choice!";
+                display(resultText, scores);
+                scores[0] = scores[1] = 0;
             } else {
-                const resultText = roundResult[0];
+                resultText = roundResult[0];
+                display(resultText, scores);
             }
+
+            console.log(resultText);
             
         })
     }
 )
+
+function display(resultText, scores) {
+    resultDisplay.textContent = resultText;
+    scoreDisplay.textContent = `Player: ${scores[0]
+    }, Computer: ${scores[1]}`;
+}
 
 function getComputerChoice() {
     const randomNumber = Math.random();
