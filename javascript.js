@@ -7,6 +7,8 @@ const scores = [0 /* player score */ , 0 /* computer score */ ];
 const resultDisplay = document.querySelector('#result-display');
 const scoreDisplay = document.querySelector('#point-display');
 
+const roundNumberDisplay = document.querySelector("#round-number");
+
 choices.forEach(
     (choice) => {
         choice.addEventListener('click', () => {
@@ -29,7 +31,11 @@ choices.forEach(
                 display(resultText, scores);
             }
 
-            console.log(resultText);
+            roundNumberDisplay.textContent = `Round Number: ${
+                (funcDecl % 5)
+                ? funcDecl % 5
+                : "Select a choice to start!"
+            }`;
             
         })
     }
