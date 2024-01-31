@@ -9,7 +9,8 @@ choices.forEach(
             const roundResult = 
             decideRound(choice.textContent, getComputerChoice());
             scores[roundResult[1]]++;
-            console.log(roundResult, scores);
+            funcDecl++;
+            console.log(roundResult, scores, funcDecl);
         })
     }
 )
