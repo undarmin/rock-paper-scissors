@@ -1,19 +1,26 @@
 const choices = [...document.querySelectorAll("button")];
+let funcDecl = 0; // how many times decideRound() has been declared
 
 const scores = [0 /* player score */ , 0 /* computer score */ ];
 
 choices.forEach(
     (choice) => {
         choice.addEventListener('click', () => {
-            console.log(
-                decideRound(choice.textContent, getComputerChoice())
-                );
+            const roundResult = 
+            decideRound(choice.textContent, getComputerChoice());
+            scores[roundResult[1]]++;
+            console.log(roundResult, scores);
         })
     }
 )
 
 function getComputerChoice() {
-    // code goes here
+    const randomNumber = Math.random();
+    const computerChoice = 
+    (randomNumber < 0.33) ? "Rock" :
+    (randomNumber < 0.66) ? "Paper" :
+    "Scissors";
+    return computerChoice;
 }
 
 function decideRound(userChoice, computerChoice) {
