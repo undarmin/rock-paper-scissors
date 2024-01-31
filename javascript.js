@@ -1,5 +1,6 @@
 const choices = [...document.querySelectorAll("button")];
 let funcDecl = 0; // how many times decideRound() has been declared
+                  // to decide if game has been over by !(funcDecl % 5)
 
 const scores = [0 /* player score */ , 0 /* computer score */ ];
 
@@ -11,6 +12,16 @@ choices.forEach(
             scores[roundResult[1]]++;
             funcDecl++;
             console.log(roundResult, scores, funcDecl);
+
+            if (!(funcDecl % 5)) {
+                const resultText = "Game Over! " + 
+                    (scores[0] > scores[1]) 
+                    ? "You win!"
+                    : "You lose!";
+            } else {
+                const resultText = roundResult[0];
+            }
+            
         })
     }
 )
